@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 /*
 
 @author Stephen Bailey
@@ -25,7 +26,7 @@ k2&4b1
 Sample Output: 
 kk&&&&b
 
- */
+*/
 namespace Sololearn_Text_Compressor
 {
     class Program
@@ -33,54 +34,79 @@ namespace Sololearn_Text_Compressor
         static void Main(string[] args)
         {
             // tester input variable, comment out before live on Sololearn
-            string inputText = "k2&4b1";
+            //string inputText = "k2&4b1";
 
             // get text, uncomment out before live Sololearn
-            //string text =  Console.ReadLine();
+            string inputText =  Console.ReadLine();
 
-            // new text uncompressor object
+            // new text uncompressor object passing input text
             TextUncompressor newTextUncompressor = new TextUncompressor(inputText);
 
             // return uncompressed input
-            Console.WriteLine(newTextUncompressor.Uncompress());
+            Console.WriteLine(newTextUncompressor.ReturnUncompressedText());
 
             // hold the console open, comment out before live on Sololearn
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         // class definition
         class TextUncompressor
         {
-            //
+            // temporary variables
             private string tempCharacterToUncompress = "";
-            private int tempCompressionTimes = 0;           
+            private int tempCompressionTimes = 0;
 
-            // constructor
-            public TextUncompressor(string inputText)
+            // final text
+            private string uncompressedText = "";
+
+            // create new string builder
+            StringBuilder newStringBuilder = new StringBuilder();
+
+            // constructor call method to start uncompressing
+            public TextUncompressor(string inputText) => StartUncompression(inputText);
+
+            // method to start uncompressing text
+            private void StartUncompression(string inputText)
             {
-                // loop through the 
+                // loop through the input text
                 for (int i = 0; i < inputText.Length; i++)
                 {
-                    // reset variables
-                    tempCharacterToUncompress = "";
-                    tempCompressionTimes = 0;
-
                     // if remainder IS zero, index is even, character must be the text to uncompress
-                    if (i % inputText.Length == 0)
+                    if (i % 2 == 0)
                     {
+                        // set the temporary character to uncompress
                         tempCharacterToUncompress = inputText[i].ToString();
                     }
                     else// else remainder NOT zero, index is odd, character must be the number of uncompressions
                     {
-                        tempCompressionTimes = inputText[i];
+                        // set the temporary number of uncompressions
+                        tempCompressionTimes = int.Parse(inputText[i].ToString());
+
+                        // call method to uncompress
+                        UncompressText();
+
+                        // reset variables
+                        tempCharacterToUncompress = "";
+                        tempCompressionTimes = 0;
                     }
                 }
             }
 
             // method to uncompress text input
-            public bool Uncompress()
+            private void UncompressText()
             {
-                throw new NotImplementedException();
+                // loop to uncompress
+                for (int i = 0; i < tempCompressionTimes; i++)
+                {
+                    // build new uncompressed text
+                    newStringBuilder.Append(tempCharacterToUncompress);
+                }
+            }
+
+            // method to return uncompressed text
+            public string ReturnUncompressedText()
+            {
+                return uncompressedText = newStringBuilder.ToString();
             }
         }
     }
