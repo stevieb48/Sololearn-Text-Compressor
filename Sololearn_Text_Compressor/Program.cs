@@ -5,6 +5,8 @@ using System;
 @version 1.0
 Date 3-10-2023
 
+Sololearn Program
+
 You need to decompress text. The compressed version has a number next to each symbol/letter, representing the amount of time that symbol should appear. 
 For example, a2b3 is the compressed version of aabbb
 
@@ -31,15 +33,15 @@ namespace Sololearn_Text_Compressor
         static void Main(string[] args)
         {
             // tester input variable, comment out before live on Sololearn
-            string text = "k2&4b1";
+            string inputText = "k2&4b1";
 
             // get text, uncomment out before live Sololearn
             //string text =  Console.ReadLine();
 
             // new text uncompressor object
-            TextUncompressor newTextUncompressor = new TextUncompressor(text);
+            TextUncompressor newTextUncompressor = new TextUncompressor(inputText);
 
-            // return
+            // return uncompressed input
             Console.WriteLine(newTextUncompressor.Uncompress());
 
             // hold the console open, comment out before live on Sololearn
@@ -49,10 +51,30 @@ namespace Sololearn_Text_Compressor
         // class definition
         class TextUncompressor
         {
+            //
+            private string tempCharacterToUncompress = "";
+            private int tempCompressionTimes = 0;           
+
             // constructor
-            public TextUncompressor(string text)
+            public TextUncompressor(string inputText)
             {
-                throw new NotImplementedException();
+                // loop through the 
+                for (int i = 0; i < inputText.Length; i++)
+                {
+                    // reset variables
+                    tempCharacterToUncompress = "";
+                    tempCompressionTimes = 0;
+
+                    // if remainder IS zero, index is even, character must be the text to uncompress
+                    if (i % inputText.Length == 0)
+                    {
+                        tempCharacterToUncompress = inputText[i].ToString();
+                    }
+                    else// else remainder NOT zero, index is odd, character must be the number of uncompressions
+                    {
+                        tempCompressionTimes = inputText[i];
+                    }
+                }
             }
 
             // method to uncompress text input
