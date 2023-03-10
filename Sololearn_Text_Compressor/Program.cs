@@ -1,21 +1,65 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+/*
 
+@author Stephen Bailey
+@version 1.0
+Date 3-10-2023
+
+You need to decompress text. The compressed version has a number next to each symbol/letter, representing the amount of time that symbol should appear. 
+For example, a2b3 is the compressed version of aabbb
+
+Task: 
+Write a program that takes the compressed text as input and outputs the decompressed version.
+
+Input Format: 
+A single string with letters/symbols, each followed by a number.
+
+Output Format: 
+A string, representing the decompressed text.
+
+Sample Input: 
+k2&4b1
+
+Sample Output: 
+kk&&&&b
+
+ */
 namespace Sololearn_Text_Compressor
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+            // tester input variable, comment out before live on Sololearn
+            string text = "k2&4b1";
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+            // get text, uncomment out before live Sololearn
+            //string text =  Console.ReadLine();
+
+            // new text uncompressor object
+            TextUncompressor newTextUncompressor = new TextUncompressor(text);
+
+            // return
+            Console.WriteLine(newTextUncompressor.Uncompress());
+
+            // hold the console open, comment out before live on Sololearn
+            Console.ReadLine();
+        }
+
+        // class definition
+        class TextUncompressor
+        {
+            // constructor
+            public TextUncompressor(string text)
+            {
+                throw new NotImplementedException();
+            }
+
+            // method to uncompress text input
+            public bool Uncompress()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
